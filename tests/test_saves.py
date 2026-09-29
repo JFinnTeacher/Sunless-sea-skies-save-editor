@@ -163,6 +163,13 @@ class Skies(TempDirTest):
                          '"AssociatedQuality":{"Tag":"","Id":132785}},"EffectiveLevel":1,"Level":1,'
                          '"AssociatedQuality":{"Tag":"","Id":132796}}')
 
+    def test_cargo_excludes_non_items(self):
+        s = self.load()
+        hold = lambda qid, nature: QualityDef(qid, "x", "Hold item / passenger", nature, 150, None, True)
+        self.assertTrue(s.is_cargo(hold(137000, "Thing")))       # Fastidious Inspector (charter)
+        self.assertFalse(s.is_cargo(hold(138302, "Thing")))      # Minimum Safe Manning Number
+        self.assertFalse(s.is_cargo(hold(139194, "Other")))      # Guests Aboard
+
 
 class Catalogs(unittest.TestCase):
     def test_skies_catalog_names_every_quality_in_real_saves(self):

@@ -353,6 +353,9 @@ class SkiesSave(GameSave):
         ("Iron", 131139), ("Mirrors", 131141), ("Veils", 131140), ("Hearts", 131138),
     ]
     CARGO_CATEGORIES = {"Goods", "Contraband", "Hold item / passenger"}
+    # Category-150 "Things" that aren't hold items: Minimum Safe Manning Number is a
+    # modifier-only stat (EffectiveLevelModifier, no Level).
+    NOT_ITEMS = {138302}
     KEY_ORDER = ["EquippedPossession", "Name", "EffectiveLevel", "EffectiveLevelModifier", "Level", "AssociatedQuality"]
 
     def entry_id(self, e):
@@ -403,6 +406,10 @@ class SkiesSave(GameSave):
         values = dict(e)
         values["Name"] = name
         self._rebuild(e, values)
+
+    def is_cargo(self, d):
+        # Non-Things in category 150 are story trackers ("Guests Aboard", "(DO NOTE USE)"…).
+        return super().is_cargo(d) and d.nature == "Thing" and d.id not in self.NOT_ITEMS
 
     def ship_slot_qid(self):
         return self.CURRENT_LOCOMOTIVE

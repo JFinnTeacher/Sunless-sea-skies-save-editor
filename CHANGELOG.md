@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- Skies: Cargo & items no longer lists non-items — "Minimum Safe Manning Number" (138302) and
+  category-150 story trackers that aren't Things ("Guests Aboard", "(DO NOTE USE)"…).
+
 ## 0.2 — 2026-09-29
 First working release.
 - Sunless Sea and Sunless Skies saves detected automatically; byte-exact round-trip of unedited saves.

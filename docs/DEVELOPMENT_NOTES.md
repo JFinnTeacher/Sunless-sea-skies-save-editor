@@ -55,8 +55,9 @@ import. v0.2 is the baseline to return to if an update goes wrong: `git checkout
    in category 1 are named Auxiliary 131179, Bridge 131178, Engine 140435, Plating 131177,
    Primary Weapon 131180, Secondary Weapon 131181, Scout 133639 — likely a mapping hint.
    `Slots[].Type` (1/2) meaning is also unknown (fore/aft?). `Active` is shown as "slot inactive".
-2. **Hide non-items from Cargo & items (Skies).** "Minimum Safe Manning Number" (138302, category 150)
-   shows at level 0 — it's a modifier-only stat (`EffectiveLevelModifier` with no `Level`).
+2. ~~**Hide non-items from Cargo & items (Skies).**~~ Done: `SkiesSave.is_cargo` requires nature
+   Thing and skips `SkiesSave.NOT_ITEMS` (138302 Minimum Safe Manning Number). Add ids there if
+   other stats turn up in the hold list.
 3. **Charters:** deliberately not editable beyond the hold item. A charter also sets story
    qualities (e.g. "The Fastidious Inspector" 134078 = 10, "A Broken Clock" 134079 = 16 timer,
    "Locks Fastidious Inspector" 139614). If adding charter support, change these together.
@@ -85,7 +86,7 @@ import. v0.2 is the baseline to return to if an update goes wrong: `git checkout
 
 ```
 python -m sunless_editor                     # run (or double-click run.pyw)
-python -m unittest discover -s tests -v      # 14 tests, ~1.5 s
+python -m unittest discover -s tests -v      # 15 tests, ~1.5 s
 python tools/smoke_gui.py shots              # GUI smoke test + screenshots
 ```
 
