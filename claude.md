@@ -6,6 +6,9 @@ Java editor at https://github.com/grmcdorman/SunlessSeaSaveEditor.
 
 - Run: `python -m sunless_editor` (or double-click `run.pyw`)
 - Tests: `python -m unittest discover -s tests -v` — tests only ever touch temp copies of saves.
+- GUI smoke test: `python tools/smoke_gui.py <screenshot_dir>`.
+- **Start here when continuing work:** [docs/DEVELOPMENT_NOTES.md](docs/DEVELOPMENT_NOTES.md) —
+  history, what's verified in-game, open work list and working methods.
 
 ## Layout
 - `sunless_editor/paths.py` — locates save files and game data on Windows/macOS/Linux.
